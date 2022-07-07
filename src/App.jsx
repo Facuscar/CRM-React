@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Layout from './layout/Layout'
-import Login from './layout/Login'
 import Beginning from './pages/Beginning';
-import LoginForm from './pages/LoginForm';
+import NewClient from './pages/NewClient';
+import EditClient from './pages/EditClient';
 
 function App() {
 
@@ -12,12 +12,10 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login/>}>
-            <Route index element={ <LoginForm/> } />
-          </Route>
-
           <Route path="/clients" element={<Layout/>}>  
-            <Route index element={<Beginning/>}></Route>
+            <Route index element={<Beginning/>} />
+            <Route path="new" element={<NewClient/>} />
+            <Route path="edit/:id" element={<EditClient/>} />
           </Route>
         </Routes>
       </BrowserRouter>
