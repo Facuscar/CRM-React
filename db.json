@@ -1,9 +1,33 @@
 {
-    "clients": [
-        {
-            "id" : 1,
-            "name" : "Facu",
-            "company" : "Artear"
-        }
-    ]
+  "clients": [
+    {
+      "id": 1,
+      "name": "Facu",
+      "company": "Artear"
+    },
+    {
+      "name": "Jorge",
+      "company": "Bordados Arte",
+      "email": "bordadosarte@hotmail.com",
+      "phone": "1159496764",
+      "notes": "El cliente solicita una pagina web auto administrable",
+      "id": 2
+    },
+    {
+      "name": "Jorge Scardillo",
+      "company": "Bordados Arte",
+      "email": "bordadosArte@gmail.com",
+      "phone": "1159496764",
+      "notes": "El cliente solicita una página web hecha a medida",
+      "id": 3
+    },
+    {
+      "name": "Jorge Scardillo",
+      "company": "Bordados Arte",
+      "email": "bordadosArte@gmail.com",
+      "phone": "1159496764",
+      "notes": "El cliente solicita una página web hecha a medida",
+      "id": 4
+    }
+  ]
 }

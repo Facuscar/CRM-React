@@ -17,9 +17,19 @@ function ClientForm() {
 
     const handleSubmit = async (values) => {
         try {
-            
+            const url = 'http://localhost:4000/clients';
+
+            const resp = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(values),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const result = await resp.json();
+
         } catch (error) {
-            
+            console.log(error);
         }
     }
 
