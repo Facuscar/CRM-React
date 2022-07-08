@@ -15,8 +15,12 @@ function ClientForm() {
 
     })
 
-    const handleSubmit = (values) => {
-        console.log(values);
+    const handleSubmit = async (values) => {
+        try {
+            
+        } catch (error) {
+            
+        }
     }
 
     return ( 
@@ -32,7 +36,7 @@ function ClientForm() {
                     notes: '',
                 }}
                 onSubmit={(values) => {
-                    handleSubmit(values)
+                    handleSubmit(values);
                 }}
                 validationSchema = {newClientSchema}
            >
@@ -70,7 +74,7 @@ function ClientForm() {
                             </div>
 
                             <div className='mb-4'>
-                                <label htmlFor="notes" className='text-gray-800 mt-2'>Phone:</label>
+                                <label htmlFor="notes" className='text-gray-800 mt-2'>Notes:</label>
                                 <Field name="notes" id="notes" as="textarea" type="text" className="mt-2 block w-full p-3 bg-gray-50" placeholder="Client's notes"></Field>
                             </div>
 
