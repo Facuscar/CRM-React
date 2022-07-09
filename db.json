@@ -9,7 +9,7 @@
       "name": "Jorge",
       "company": "Bordados Arte",
       "email": "bordadosarte@hotmail.com",
-      "phone": "1159496764",
+      "phone": "1150505050",
       "notes": "El cliente solicita una pagina web auto administrable",
       "id": 2
     },
@@ -17,7 +17,7 @@
       "name": "Jorge Scardillo",
       "company": "Bordados Arte",
       "email": "bordadosArte@gmail.com",
-      "phone": "1159496764",
+      "phone": "1150505050",
       "notes": "El cliente solicita una página web hecha a medida",
       "id": 3
     },
@@ -25,9 +25,17 @@
       "name": "Jorge Scardillo",
       "company": "Bordados Arte",
       "email": "bordadosArte@gmail.com",
-      "phone": "1159496764",
+      "phone": "1150505050",
       "notes": "El cliente solicita una página web hecha a medida",
       "id": 4
+    },
+    {
+      "name": "Facundo Scardillo",
+      "company": "Artear",
+      "email": "facuscar@hotmail.com",
+      "phone": "1123233232",
+      "notes": "",
+      "id": 5
     }
   ]
 }

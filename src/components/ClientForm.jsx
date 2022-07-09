@@ -45,8 +45,10 @@ function ClientForm() {
                     phone: '',
                     notes: '',
                 }}
-                onSubmit={(values) => {
-                    handleSubmit(values);
+                onSubmit={ async (values, {resetForm}) => {
+                    await handleSubmit(values);
+
+                    resetForm();
                 }}
                 validationSchema = {newClientSchema}
            >
