@@ -1,9 +1,11 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 import Alert from './Alert';
 
 function ClientForm() {
+    const navigate = useNavigate();
 
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     
@@ -28,6 +30,7 @@ function ClientForm() {
             });
             const result = await resp.json();
 
+            navigate('/clients');
         } catch (error) {
             console.log(error);
         }

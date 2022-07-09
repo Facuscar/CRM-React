@@ -1,11 +1,6 @@
 {
   "clients": [
     {
-      "id": 1,
-      "name": "Facu",
-      "company": "Artear"
-    },
-    {
       "name": "Jorge",
       "company": "Bordados Arte",
       "email": "bordadosarte@hotmail.com",
@@ -36,6 +31,14 @@
       "phone": "1123233232",
       "notes": "",
       "id": 5
+    },
+    {
+      "name": "Facundo Scardillo",
+      "company": "Software Developers",
+      "email": "facuscardillo@sdevelopers.com",
+      "phone": "1150502525",
+      "notes": "He wants a new developer for his company",
+      "id": 6
     }
   ]
 }
