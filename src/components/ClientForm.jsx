@@ -42,12 +42,13 @@ function ClientForm({client}) {
 
            <Formik
                 initialValues={{
-                    name: '',
-                    company: '',
-                    email: '',
-                    phone: '',
-                    notes: '',
+                    name: client?.name ?? '',
+                    company: client?.company ?? '',
+                    email: client?.email ?? '',
+                    phone: client?.phone ?? '',
+                    notes: client?.notes ?? '',
                 }}
+                enableReinitialize={true}
                 onSubmit={ async (values, {resetForm}) => {
                     await handleSubmit(values);
 
@@ -101,6 +102,9 @@ function ClientForm({client}) {
         </div>
 
      );
+}
+ClientForm.defaultProps = {
+    client: {},
 }
 
 export default ClientForm;
