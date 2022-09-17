@@ -1,36 +1,35 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Spinner from '../components/Spinners';
 
 function ClientInfo() {
     
     const [client, setClient] = useState({})
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const { id } = useParams();
 
     useEffect(() => {
-        setLoading(!loading);
         const getAPIClient = async () => {
             try {
                 const url = `http://localhost:4000/clients/${id}`
                 const res = await fetch(url)
                 const data = await res.json()
                 setClient(data);
-                
+                if(data) {
+                    setLoading(false)
+                }
             } catch (error) {
                 console.log(error);
             }
-            setLoading(false)
         }
         getAPIClient();
     }, []);
-    
     const { name, company, email, phone, notes } = client
-    console.log(client);
 
     return ( 
         <div>
-            {loading ? <h1>Loading</h1> : 
+            {loading ? <Spinner /> : 
             <>
             {
                 Object.keys(client).length === 0 ? <h1>404 Client not found</h1> : 
