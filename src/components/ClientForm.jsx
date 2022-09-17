@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Alert from './Alert';
 
-function ClientForm() {
+function ClientForm({client}) {
     const navigate = useNavigate();
 
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
