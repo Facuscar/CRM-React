@@ -31,7 +31,7 @@ function EditClient() {
         <div>
             <h1 className="font-black text-4xl text-blue-900">Edit client</h1>
             <p className="mt-3">Use the following form to edit clients info</p>
-            <ClientForm client={client} ></ClientForm>
+            <ClientForm client={client} loading={loading} ></ClientForm>
         </div>
      );
 }

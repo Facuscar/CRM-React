@@ -3,8 +3,9 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
 import Alert from './Alert';
+import Spinner from '../components/Spinners';
 
-function ClientForm({client}) {
+function ClientForm({client, loading}) {
     const navigate = useNavigate();
 
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -36,9 +37,9 @@ function ClientForm({client}) {
         }
     }
 
-    return ( 
-        <div className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto">
-           <h1 className="text-gray-600 font-bold text-xl uppercase text-center">Add new cient</h1>
+    return (
+        loading === true ? <Spinner /> : <div className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto">
+           <h1 className="text-gray-600 font-bold text-xl uppercase text-center">{Object.keys(client).length !== 0 ? 'Edit client' : 'Add new cient'}</h1>
 
            <Formik
                 initialValues={{
@@ -100,11 +101,11 @@ function ClientForm({client}) {
                 }}
             </Formik>
         </div>
-
-     );
+    );
 }
 ClientForm.defaultProps = {
     client: {},
+    loading: false,
 }
 
 export default ClientForm;
