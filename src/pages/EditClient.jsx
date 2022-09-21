@@ -7,7 +7,7 @@ function EditClient() {
 
     const [client, setClient] = useState({})
     const [loading, setLoading] = useState(true);
-
+    const [error, setError] = useState(false);
     const { id } = useParams();
 
     useEffect(() => {
@@ -16,6 +16,9 @@ function EditClient() {
                 const url = `http://localhost:4000/clients/${id}`
                 const res = await fetch(url)
                 const data = await res.json()
+                if(Object.keys(data).length === 0) {
+                    setError(true);
+                }
                 setClient(data);
                 if(data) {
                     setLoading(false)
@@ -26,13 +29,15 @@ function EditClient() {
         }
         getAPIClient();
     }, []);
-
-    return ( 
-        <div>
+    return (
+        error ? <h3>No data was found with the id {id}</h3> : (
+            <div>
             <h1 className="font-black text-4xl text-blue-900">Edit client</h1>
             <p className="mt-3">Use the following form to edit clients info</p>
             <ClientForm client={client} loading={loading} ></ClientForm>
-        </div>
+            </div>
+        )
+        
      );
 }
 

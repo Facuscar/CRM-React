@@ -39,7 +39,7 @@ function ClientForm({client, loading}) {
 
     return (
         loading === true ? <Spinner /> : <div className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto">
-           <h1 className="text-gray-600 font-bold text-xl uppercase text-center">{Object.keys(client).length !== 0 ? 'Edit client' : 'Add new cient'}</h1>
+           <h1 className="text-gray-600 font-bold text-xl uppercase text-center">{Object.keys(client).length !== 0 ? 'Edit client' : 'Add new client'}</h1>
 
            <Formik
                 initialValues={{
@@ -95,7 +95,7 @@ function ClientForm({client, loading}) {
                                 <Field name="notes" id="notes" as="textarea" type="text" className="mt-2 block w-full p-3 bg-gray-50" placeholder="Client's notes"></Field>
                             </div>
 
-                            <input type="submit"  value={"Add client"} className="mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg"/>
+                            <input type="submit"  value={Object.keys(client).length !== 0 ? 'Edit client' : 'Add client'} className="mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg"/>
                         </Form>
                     );
                 }}
