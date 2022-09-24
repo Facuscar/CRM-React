@@ -23,6 +23,29 @@ function Beginning() {
         getClientsAPI();
     }, []);
 
+    const handleDelete = async (id) => {
+        const accepts = confirm(`You are about to delete ${name}. This action is irreversible`)
+
+        if (accepts) {
+            try {
+                const url = `http://localhost:4000/clients/${id}`;
+
+                const config = {
+                    method: 'DELETE',
+                }
+                
+                const res = await fetch(url, config);
+                await res.json();
+                
+                setClients( () => {
+                    return clients.filter( client => client.id !== id)
+                })
+            } catch (error) {
+               console.log(error); 
+            }
+        }
+    }
+
     return ( 
         <>
             <h1 className='font-black text-4xl text-blue-900'>Clients</h1>
@@ -39,7 +62,7 @@ function Beginning() {
                 </thead>
                 <tbody>
                     {clients.map ( client => (
-                        <Client key={client.id} client={client}></Client>
+                        <Client key={client.id} client={client} handleDelete={handleDelete}></Client>
                     ) )}
                 </tbody>
             </table>
