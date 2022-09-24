@@ -13,7 +13,7 @@ function EditClient() {
     useEffect(() => {
         const getAPIClient = async () => {
             try {
-                const url = `http://localhost:4000/clients/${id}`
+                const url = `${import.meta.env.VITE_BASE_URL}/${id}`
                 const res = await fetch(url)
                 const data = await res.json()
                 if(Object.keys(data).length === 0) {

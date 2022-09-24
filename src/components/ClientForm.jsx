@@ -20,7 +20,7 @@ function ClientForm({client, loading}) {
 
     const handleSubmit = async (values) => {
         try {
-            let url = 'http://localhost:4000/clients';
+            let url = import.meta.env.VITE_BASE_URL;
             let method = 'POST';
 
             if(client.id) {
