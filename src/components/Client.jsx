@@ -5,6 +5,10 @@ function Client({client}) {
 
     const { name, company, email, phone, notes, id } = client;
 
+    const handleDelete = () => {
+        console.log('deleting..');
+    }
+
     return ( 
         <tr className="border-b hover:bg-gray-50">
             <td className="p-3">{name}</td>
@@ -18,7 +22,7 @@ function Client({client}) {
 
                 <button type="button" onClick={() => navigate(`/clients/edit/${id}`)} className="bg-blue-600 hover:bg-blue-700 block w-full text-white p-2 uppercase font-bold text-xs mt-3">Edit</button>
 
-                <button type="button" className="bg-red-600 hover:bg-red-700 block w-full text-white p-2 uppercase font-bold text-xs mt-3">Delete</button>
+                <button type="button" onClick={handleDelete} className="bg-red-600 hover:bg-red-700 block w-full text-white p-2 uppercase font-bold text-xs mt-3">Delete</button>
             </td>
             
         </tr>

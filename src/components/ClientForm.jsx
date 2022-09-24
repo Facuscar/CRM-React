@@ -20,16 +20,24 @@ function ClientForm({client, loading}) {
 
     const handleSubmit = async (values) => {
         try {
-            const url = 'http://localhost:4000/clients';
+            let url = 'http://localhost:4000/clients';
+            let method = 'POST';
 
-            const resp = await fetch(url, {
-                method: 'POST',
+            if(client.id) {
+                url += `/${client.id}`;
+                method = 'PUT'
+            }
+
+            const config = {
+                method: method,
                 body: JSON.stringify(values),
                 headers: {
                     'Content-Type': 'application/json',
                 },
-            });
-            const result = await resp.json();
+            };
+
+            const resp = await fetch(url, config);
+            await resp.json();
 
             navigate('/clients');
         } catch (error) {
