@@ -1,119 +1,77 @@
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-
-import Alert from './Alert';
-import Spinner from '../components/Spinners';
-
-function ClientForm({client, loading}) {
-    const navigate = useNavigate();
-
-    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-    
-    const newClientSchema = Yup.object().shape({
-        name: Yup.string().min(2).required(),
-        company: Yup.string().required(),
-        email: Yup.string().required().email(),
-        phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
-
-    })
-
-    const handleSubmit = async (values) => {
-        try {
-            let url = import.meta.env.VITE_BASE_URL;
-            let method = 'POST';
-
-            if(client.id) {
-                url += `/${client.id}`;
-                method = 'PUT'
-            }
-
-            const config = {
-                method: method,
-                body: JSON.stringify(values),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            };
-
-            const resp = await fetch(url, config);
-            await resp.json();
-
-            navigate('/clients');
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+const Form = ({client}) => {
     return (
-        loading === true ? <Spinner /> : <div className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto">
-           <h1 className="text-gray-600 font-bold text-xl uppercase text-center">{Object.keys(client).length !== 0 ? 'Edit client' : 'Add new client'}</h1>
+        <>
+            <div className="mb-4">
+                <label
+                    className="text-gray-800"
+                    htmlFor="name"
+                >Name:</label>
+                <input 
+                    id="name"
+                    type="text"
+                    className="mt-2 block w-full p-3 bg-gray-50"
+                    placeholder="Client's name"
+                    name="name"
+                />
+            </div>
+            <div className="mb-4">
+                <label
+                    className="text-gray-800"
+                    htmlFor="company"
+                >Company:</label>
+                <input 
+                    id="company"
+                    type="text"
+                    className="mt-2 block w-full p-3 bg-gray-50"
+                    placeholder="Client's company"
+                    name="company"
+                />
+            </div>
 
-           <Formik
-                initialValues={{
-                    name: client?.name ?? '',
-                    company: client?.company ?? '',
-                    email: client?.email ?? '',
-                    phone: client?.phone ?? '',
-                    notes: client?.notes ?? '',
-                }}
-                enableReinitialize={true}
-                onSubmit={ async (values, {resetForm}) => {
-                    await handleSubmit(values);
+            <div className="mb-4">
+                <label
+                    className="text-gray-800"
+                    htmlFor="email"
+                >E-mail:</label>
+                <input 
+                    id="email"
+                    type="email"
+                    className="mt-2 block w-full p-3 bg-gray-50"
+                    placeholder="Client's email"
+                    name="email"
+                />
+            </div>
 
-                    resetForm();
-                }}
-                validationSchema = {newClientSchema}
-           >
-                {({errors, touched}) => {
+            <div className="mb-4">
+                <label
+                    className="text-gray-800"
+                    htmlFor="phone"
+                >Phone:</label>
+                <input 
+                    id="phone"
+                    type="tel"
+                    className="mt-2 block w-full p-3 bg-gray-50"
+                    placeholder="Client's phone"
+                    name="phone"
+                />
+            </div>
 
-                    return (
-                        <Form className='mt-10'>
-
-                            <div className='mb-4'>
-                                <label htmlFor="name" className='text-gray-800 mt-2'>Name:</label>
-                                <Field name="name" id="name" type="text" className="mt-2 block w-full p-3 bg-gray-50" placeholder="Client's name"></Field>
-
-                                {errors.name && touched.name && <Alert error={errors.name}></Alert>}
-                            </div>
-
-                            <div className='mb-4'>
-                                <label htmlFor="company" className='text-gray-800 mt-2'>Company:</label>
-                                <Field name="company" id="company" type="text" className="mt-2 block w-full p-3 bg-gray-50" placeholder="Client's company"></Field>
-
-                                {errors.company && touched.company && <Alert error={errors.company}></Alert>}
-                            </div>
-
-                            <div className='mb-4'>
-                                <label htmlFor="email" className='text-gray-800 mt-2'>Email:</label>
-                                <Field name="email" id="email" type="text" className="mt-2 block w-full p-3 bg-gray-50" placeholder="Client's email"></Field>
-
-                                {errors.email && touched.email && <Alert error={errors.email}></Alert>}
-                            </div>
-
-                            <div className='mb-4'>
-                                <label htmlFor="phone" className='text-gray-800 mt-2'>Phone:</label>
-                                <Field name="phone" id="phone" type="tel" className="mt-2 block w-full p-3 bg-gray-50" placeholder="Client's phone"></Field>
-                                
-                                {errors.phone && touched.phone && <Alert error={errors.phone}></Alert>}
-                            </div>
-
-                            <div className='mb-4'>
-                                <label htmlFor="notes" className='text-gray-800 mt-2'>Notes:</label>
-                                <Field name="notes" id="notes" as="textarea" type="text" className="mt-2 block w-full p-3 bg-gray-50" placeholder="Client's notes"></Field>
-                            </div>
-
-                            <input type="submit"  value={Object.keys(client).length !== 0 ? 'Edit client' : 'Add client'} className="mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg"/>
-                        </Form>
-                    );
-                }}
-            </Formik>
-        </div>
-    );
+            <div className="mb-4">
+                <label
+                    className="text-gray-800"
+                    htmlFor="notes"
+                >Notes:</label>
+                <textarea
+                    as="textarea"
+                    id="notes"
+                    type="text"
+                    className="mt-2 block w-full p-3 bg-gray-50 h-40 align-self"
+                    placeholder="Client's notes"
+                    name="notes"
+                />
+            </div>
+        </>
+    )
 }
-ClientForm.defaultProps = {
-    client: {},
-    loading: false,
-}
 
-export default ClientForm;
+export default Form

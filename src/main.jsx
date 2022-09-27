@@ -2,11 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'  
 
-import App from './App'
 import './index.css'
 import Layout from './layout/Layout'
-import Beginning from './pages/Beginning'
-import NewClient from './pages/NewClient'
+import Index, {loader as ClientLoader} from './pages/Index'
+import NewClient, {action as newClientAction} from './pages/NewClient'
 
 const router = createBrowserRouter([
   {
@@ -15,11 +14,13 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Beginning />
+        element: <Index />,
+        loader: ClientLoader
       },
       {
         path: '/new',
-        element: <NewClient />
+        element: <NewClient />,
+        action: newClientAction
       }
     ]
   },

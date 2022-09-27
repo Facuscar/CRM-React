@@ -1,27 +1,29 @@
 import { useState, useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 import Client from '../components/Client';
 
-function Beginning() {
+export const loader = () => {
+    const getClientsAPI = async () => {
+        try {
+            const url = import.meta.env.VITE_BASE_URL;
+            const resp = await fetch(url);
 
-    const [clients, setClients] = useState([]);
+            const data = await resp.json();
 
-    useEffect(() => {
-        const getClientsAPI = async () => {
-            try {
-                const url = import.meta.env.VITE_BASE_URL;
-                const resp = await fetch(url);
-
-                const result = await resp.json();
-
-                setClients(result);
-            } catch (error) {
-                
-            }
+            return data;
+        } catch (error) {
+            console.log(error);
         }
+    }
 
-        getClientsAPI();
-    }, []);
+    getClientsAPI();
+}
+
+function Index() {
+    console.log('hi');
+
+    const clients = useLoaderData();
 
     const handleDelete = async (id) => {
         const accepts = confirm(`You are about to delete ${name}. This action is irreversible`)
@@ -70,4 +72,4 @@ function Beginning() {
      );
 }
 
-export default Beginning;
+export default Index;
