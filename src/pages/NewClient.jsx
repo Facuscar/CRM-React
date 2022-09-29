@@ -7,6 +7,14 @@ export const action = async ({request}) => {
 
     const errors = [];
 
+    const email = formData.get('email');
+
+    const regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
+
+    if(!regex.test(email)) {
+        errors.push('The emails format is invalid');
+    }
+
     if(Object.values(Object.fromEntries(formData)).includes('')) {
         errors.push('All fields are required');
     }
@@ -29,6 +37,7 @@ function NewClient() {
 
             <Form 
                 method="POST"
+                noValidate
             >
                 <ClientForm></ClientForm>
 
