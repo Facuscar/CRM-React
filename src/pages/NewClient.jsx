@@ -1,18 +1,32 @@
-import { Form } from "react-router-dom";
+import { Form, useActionData } from "react-router-dom";
 import ClientForm from "../components/ClientForm";
+import Alert from "../components/Alert";
 
 export const action = async ({request}) => {
     const formData = await request.formData();
 
-    console.log(formData.get('name'));
+    const errors = [];
+
+    if(Object.values(Object.fromEntries(formData)).includes('')) {
+        errors.push('All fields are required');
+    }
+
+    if(errors.length) {
+        return errors;
+    }
 }
 
 function NewClient() {
+    const errors = useActionData();
+
+    console.log(errors);
     return ( 
         <>
             <h1 className="font-black text-4xl text-blue-900">New client</h1>
             <p className="mb-5">Complete the following fields to add a new client</p>
             
+            {errors?.length && errors.map( (error, i) => <Alert error={error} key={i}/>)}
+
             <Form 
                 method="POST"
             >
