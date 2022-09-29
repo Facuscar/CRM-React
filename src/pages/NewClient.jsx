@@ -1,8 +1,10 @@
 import { Form } from "react-router-dom";
 import ClientForm from "../components/ClientForm";
 
-export const action = () => {
-    console.log('Form submit');
+export const action = async ({request}) => {
+    const formData = await request.formData();
+
+    console.log(formData.get('name'));
 }
 
 function NewClient() {
