@@ -17,7 +17,7 @@ export const loader = () => {
         }
     }
 
-    getClientsAPI();
+    return getClientsAPI();
 }
 
 function Index() {
