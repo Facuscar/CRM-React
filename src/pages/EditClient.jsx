@@ -1,38 +1,35 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import ClientForm from "../components/ClientForm";
 
-export const loader = async ({params}) => {
+export const loader = async ({ params }) => {
+    const { id } = params;
 
+    const getAPIClient = async () => {
+        try {
+            const url = `${import.meta.env.VITE_BASE_URL}/${id}`
+
+            const res = await fetch(url)
+            const data = await res.json()
+
+            if(Object.values(data).length === 0) {
+                throw new Response('' , {
+                    status: 404,
+                    statusText: 'No results found with this id',
+                });
+            }
+
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const client = getAPIClient();
 }
 
 function EditClient() {
-
-    const [client, setClient] = useState({})
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-    const { id } = useParams();
-
-    useEffect(() => {
-        const getAPIClient = async () => {
-            try {
-                const url = `${import.meta.env.VITE_BASE_URL}/${id}`
-                const res = await fetch(url)
-                const data = await res.json()
-                if(Object.keys(data).length === 0) {
-                    setError(true);
-                }
-                setClient(data);
-                if(data) {
-                    setLoading(false)
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        getAPIClient();
-    }, []);
+        
     return (
         error ? <h3>No data was found with the id {id}</h3> : (
             <div>
