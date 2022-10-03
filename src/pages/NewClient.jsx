@@ -1,9 +1,10 @@
-import { Form, useActionData } from "react-router-dom";
+import { Form, useActionData, redirect } from "react-router-dom";
 import ClientForm from "../components/ClientForm";
 import Alert from "../components/Alert";
 
 export const action = async ({request}) => {
     const formData = await request.formData();
+    const data = Object.fromEntries(formData);
 
     const errors = [];
 
@@ -22,6 +23,29 @@ export const action = async ({request}) => {
     if(errors.length) {
         return errors;
     }
+
+    const saveNewClient = async (client) => {
+        try {
+            const url = import.meta.env.VITE_BASE_URL
+            const config = {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json',
+                },
+                body: JSON.stringify(client),
+            }
+
+            const res = await fetch(url, config);
+            const data = await res.json();
+            console.log('hi');
+        } catch (error) {
+          console.log(error);  
+        }
+    }
+
+    await saveNewClient(data);
+
+    return redirect('/');
 }
 
 function NewClient() {

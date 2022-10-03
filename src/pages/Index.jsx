@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 import Client from '../components/Client';
@@ -21,8 +20,6 @@ export const loader = () => {
 }
 
 function Index() {
-    console.log('hi');
-
     const clients = useLoaderData();
 
     const handleDelete = async (id) => {

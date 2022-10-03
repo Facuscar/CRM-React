@@ -19,7 +19,7 @@ function Layout() {
                     </Link>
                     <Link 
                         to="/new" 
-                        className={` ${url === '/clients/new' ? 'text-blue-300' : 'text-white' } text-white text-2xl block mt-2 hover:text-blue-300`}
+                        className={` ${url === '/new' ? 'text-blue-300' : 'text-white' } text-white text-2xl block mt-2 hover:text-blue-300`}
                     >
                         New client
                     </Link>
