@@ -37,7 +37,6 @@ export const action = async ({request}) => {
 
             const res = await fetch(url, config);
             const data = await res.json();
-            console.log('hi');
         } catch (error) {
           console.log(error);  
         }

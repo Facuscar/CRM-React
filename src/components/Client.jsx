@@ -16,7 +16,7 @@ function Client({client, handleDelete}) {
             <td className="p-3">
                 <button type="button" className="bg-yellow-600 hover:bg-yellow-700 block w-full text-white p-2 uppercase font-bold text-xs" onClick={() =>  navigate(`/clients/${id}`)}>More..</button>
 
-                <button type="button" onClick={() => navigate(`/clients/edit/${id}`)} className="bg-blue-600 hover:bg-blue-700 block w-full text-white p-2 uppercase font-bold text-xs mt-3">Edit</button>
+                <button type="button" onClick={() => navigate(`/clients/${id}/edit`)} className="bg-blue-600 hover:bg-blue-700 block w-full text-white p-2 uppercase font-bold text-xs mt-3">Edit</button>
 
                 <button type="button" onClick={() => handleDelete(id)} className="bg-red-600 hover:bg-red-700 block w-full text-white p-2 uppercase font-bold text-xs mt-3">Delete</button>
             </td>

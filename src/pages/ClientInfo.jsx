@@ -25,6 +25,7 @@ function ClientInfo() {
         }
         getAPIClient();
     }, []);
+
     const { name, company, email, phone, notes } = client
 
     return ( 

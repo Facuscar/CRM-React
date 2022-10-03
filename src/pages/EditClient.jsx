@@ -3,6 +3,10 @@ import { useParams } from "react-router-dom";
 
 import ClientForm from "../components/ClientForm";
 
+export const loader = async ({params}) => {
+
+}
+
 function EditClient() {
 
     const [client, setClient] = useState({})
