@@ -1,14 +1,13 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-
+import { Form, useLoaderData, useActionData } from "react-router-dom";
 import ClientForm from "../components/ClientForm";
+import Alert from "../components/Alert";
 
 export const loader = async ({ params }) => {
-    const { id } = params;
+    const { clientId } = params;
 
     const getAPIClient = async () => {
         try {
-            const url = `${import.meta.env.VITE_BASE_URL}/${id}`
+            const url = `${import.meta.env.VITE_BASE_URL}/${clientId}`
 
             const res = await fetch(url)
             const data = await res.json()
@@ -26,19 +25,33 @@ export const loader = async ({ params }) => {
         }
     }
     const client = getAPIClient();
+    return client;
 }
 
 function EditClient() {
-        
-    return (
-        error ? <h3>No data was found with the id {id}</h3> : (
-            <div>
+    const client = useLoaderData();
+    const errors = useActionData();
+    
+    return ( 
+        <>
             <h1 className="font-black text-4xl text-blue-900">Edit client</h1>
-            <p className="mt-3">Use the following form to edit clients info</p>
-            <ClientForm client={client} loading={loading} ></ClientForm>
-            </div>
-        )
-        
+            <p className="mb-5">Modify the following fields to edit the client</p>
+            
+            {errors?.length && errors.map( (error, i) => <Alert error={error} key={i}/>)}
+
+            <Form 
+                method="POST"
+                noValidate
+            >
+                <ClientForm client={client}></ClientForm>
+
+                <input 
+                    type="submit" 
+                    className="mt-5 w-full bg-blue-800 p-3 uppercase font-bold text-white text-lg" 
+                    value='Add client'
+                />
+            </Form>
+        </>
      );
 }
 

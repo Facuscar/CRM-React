@@ -50,7 +50,6 @@ export const action = async ({request}) => {
 function NewClient() {
     const errors = useActionData();
 
-    console.log(errors);
     return ( 
         <>
             <h1 className="font-black text-4xl text-blue-900">New client</h1>
