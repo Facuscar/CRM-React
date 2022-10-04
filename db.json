@@ -39,14 +39,6 @@
       "phone": "1150502525",
       "notes": "He wants a new developer for his company",
       "id": 6
-    },
-    {
-      "name": "Test Test",
-      "company": "Test",
-      "email": "test@test.net",
-      "phone": "1120204040",
-      "notes": "This is a test",
-      "id": 7
     }
   ]
 }

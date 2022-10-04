@@ -41,7 +41,7 @@ function Client({client}) {
                     Edit
                 </button>
 
-                <Form method='POST' action={`clients/${id}/delete`} onSubmit={(e) => {
+                <Form method='POST' action={`client/${id}/delete`} onSubmit={(e) => {
                     if(!confirm('You are about to delete a client. This action is irreversible.')) {
                         e.preventDefault();
                     }
