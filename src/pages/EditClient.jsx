@@ -53,7 +53,6 @@ export const action = async ({request, params}) => {
     const editClient = async (clientId, client) => {
         try {
             const url = `${import.meta.env.VITE_BASE_URL}/${clientId}`
-            console.log(url);
             const config = {
                 method: 'PUT',
                 headers: {
